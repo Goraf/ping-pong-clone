@@ -2,6 +2,7 @@
 #include <SFML\Graphics.hpp>
 
 
+
 class Game {
 public:
     Game::Game();
@@ -9,7 +10,7 @@ public:
 
 private:
     void handleInput();
-    void update();
+    void update(const float& deltaTime);
     void render();
 
     const unsigned windowWidth = 800;
