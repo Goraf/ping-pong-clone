@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML\Graphics.hpp>
-
+#include "Paddle.h"
 
 
 class Game {
@@ -15,4 +15,6 @@ private:
 
     sf::RenderWindow window;
     bool isRunning{ false };
+
+    Paddle Player1;
 };

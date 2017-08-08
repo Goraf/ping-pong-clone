@@ -47,14 +47,30 @@ void Game::handleInput() {
             window.close();
             isRunning = false;
         }
+
+        if (event.type == sf::Event::KeyReleased) {
+            Player1.stopMovement();
+        }
     }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+        Player1.moveUp();
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
+        Player1.moveDown();
+    }
+
 }
 
 void Game::update(const float& deltaTime) {
+    Player1.update(deltaTime);
     std::cout << "Update: " << 1.f / deltaTime << '\n';
 }
 
 void Game::render() {
     window.clear();
+
+    Player1.draw(window);
+
     window.display();
 }
