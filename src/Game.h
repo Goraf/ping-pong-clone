@@ -13,10 +13,6 @@ private:
     void update(const float& deltaTime);
     void render();
 
-    const unsigned windowWidth = 800;
-    const unsigned windowHeight = 600;
-    const std::string windowTitle = "PongClone";
-
     sf::RenderWindow window;
     bool isRunning{ false };
 };
