@@ -35,8 +35,6 @@ void Game::run() {
         }
 
         render();
-
-        std::cout << "Render: " << 1.f / frameTime.asSeconds() << '\n';
     }
 }
 
@@ -65,7 +63,6 @@ void Game::handleInput() {
 void Game::update(const float& deltaTime) {
     ball.update(deltaTime);
     Player1.update(deltaTime);
-    std::cout << "Update: " << 1.f / deltaTime << '\n';
     doCollisions();
 }
 
