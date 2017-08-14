@@ -12,6 +12,13 @@ public:
     void moveDown();
     void stopMovement();
 
+    float getPositionX() {
+        return shape.getPosition().x;
+    }
+    float getPositionY() {
+        return shape.getPosition().y;
+    }
+
 private:
     float speed{ 200 };
 

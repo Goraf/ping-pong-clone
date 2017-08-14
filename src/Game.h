@@ -14,6 +14,9 @@ private:
     void update(const float& deltaTime);
     void render();
 
+    void doCollisions();
+    bool checkCollision(Ball &circle, Paddle &rect);
+
     sf::RenderWindow window;
     bool isRunning{ false };
 

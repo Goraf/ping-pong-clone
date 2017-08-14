@@ -66,6 +66,7 @@ void Game::update(const float& deltaTime) {
     ball.update(deltaTime);
     Player1.update(deltaTime);
     std::cout << "Update: " << 1.f / deltaTime << '\n';
+    doCollisions();
 }
 
 void Game::render() {
@@ -75,4 +76,20 @@ void Game::render() {
     Player1.draw(window);
 
     window.display();
+}
+
+void Game::doCollisions() {
+    if (checkCollision(ball, Player1)) {
+        ball.velocity.x = -ball.velocity.x;
+    }
+}
+
+bool Game::checkCollision(Ball &ball, Paddle &rect) {
+    bool collideX = ball.getPositionX() + 2*ballRadius >= rect.getPositionX() &&
+        ball.getPositionX() <= rect.getPositionX() + paddleWidth;
+
+    bool collideY = ball.getPositionY() + 2*ballRadius >= rect.getPositionY() &&
+        ball.getPositionY() <= rect.getPositionY() + paddleHeight;
+
+    return collideX && collideY;
 }
