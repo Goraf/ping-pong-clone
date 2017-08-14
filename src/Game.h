@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML\Graphics.hpp>
+#include "Ball.h"
 #include "Paddle.h"
 
 
@@ -17,4 +18,5 @@ private:
     bool isRunning{ false };
 
     Paddle Player1;
+    Ball ball;
 };

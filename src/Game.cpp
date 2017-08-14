@@ -63,6 +63,7 @@ void Game::handleInput() {
 }
 
 void Game::update(const float& deltaTime) {
+    ball.update(deltaTime);
     Player1.update(deltaTime);
     std::cout << "Update: " << 1.f / deltaTime << '\n';
 }
@@ -70,6 +71,7 @@ void Game::update(const float& deltaTime) {
 void Game::render() {
     window.clear();
 
+    ball.draw(window);
     Player1.draw(window);
 
     window.display();
