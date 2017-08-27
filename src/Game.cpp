@@ -33,8 +33,9 @@ void Game::run() {
             update(deltaTime);
             accumulator -= deltaTime;
         }
-
         render();
+
+        sf::sleep(sf::milliseconds(1));
     }
 }
 
