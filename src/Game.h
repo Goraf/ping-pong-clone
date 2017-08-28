@@ -21,5 +21,6 @@ private:
     bool isRunning{ false };
 
     Paddle player1;
+    Paddle player2;
     Ball ball;
 };

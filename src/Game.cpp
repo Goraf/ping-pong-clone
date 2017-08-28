@@ -4,7 +4,8 @@
 
 
 Game::Game() : 
-    player1(50.f) 
+    player1(50.f),
+    player2(windowWidth - 50.f - paddleWidth)
 {
     window.create(sf::VideoMode(windowWidth, windowHeight), windowTitle, sf::Style::Titlebar | sf::Style::Close);
 }
@@ -63,12 +64,12 @@ void Game::handleInput() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
         player1.moveDown();
     }
-
 }
 
 void Game::update(const float& deltaTime) {
     ball.update(deltaTime);
     player1.update(deltaTime);
+    player2.update(deltaTime);
     doCollisions();
 
     if (ball.getPositionX() <= 0.f || ball.getPositionX() >= windowWidth - 2 * ballRadius)
@@ -80,14 +81,17 @@ void Game::render() {
 
     ball.draw(window);
     player1.draw(window);
+    player2.draw(window);
 
     window.display();
 }
 
 void Game::doCollisions() {
-    if (checkCollision(ball, player1)) {
+    if (checkCollision(ball, player1))
         ball.velocity.x = -ball.velocity.x;
-    }
+
+    if (checkCollision(ball, player2))
+        ball.velocity.x = -ball.velocity.x;
 }
 
 bool Game::checkCollision(Ball &ball, Paddle &rect) {
