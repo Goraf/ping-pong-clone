@@ -1,7 +1,10 @@
 #include "Ball.h"
 #include "config.h"
 
-Ball::Ball() {
+Ball::Ball() :
+    gen(rd()),
+    dist(0, 1)
+{
     shape.setRadius(ballRadius);
     shape.setFillColor(sf::Color::Blue);
     reset();
@@ -31,8 +34,16 @@ void Ball::reset() {
 
 void Ball::launch() {
     if (!isMoving) {
-        velocity.x = 300.f;
-        velocity.y = 300.f;
+        if (dist(gen))
+            velocity.x = 300.f;
+        else
+            velocity.x = -300.f;
+
+        if (dist(gen))
+            velocity.y = 300.f;
+        else
+            velocity.y = -300.f;
+
         isMoving = true;
     }
 }
