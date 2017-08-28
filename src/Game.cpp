@@ -3,7 +3,9 @@
 #include "Game.h"
 
 
-Game::Game() {
+Game::Game() : 
+    player1(50.f) 
+{
     window.create(sf::VideoMode(windowWidth, windowHeight), windowTitle, sf::Style::Titlebar | sf::Style::Close);
 }
 
@@ -48,7 +50,7 @@ void Game::handleInput() {
         }
 
         if (event.type == sf::Event::KeyReleased) {
-            Player1.stopMovement();
+            player1.stopMovement();
         }
 
         if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
@@ -56,17 +58,17 @@ void Game::handleInput() {
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-        Player1.moveUp();
+        player1.moveUp();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
-        Player1.moveDown();
+        player1.moveDown();
     }
 
 }
 
 void Game::update(const float& deltaTime) {
     ball.update(deltaTime);
-    Player1.update(deltaTime);
+    player1.update(deltaTime);
     doCollisions();
 
     if (ball.getPositionX() <= 0.f || ball.getPositionX() >= windowWidth - 2 * ballRadius)
@@ -77,13 +79,13 @@ void Game::render() {
     window.clear();
 
     ball.draw(window);
-    Player1.draw(window);
+    player1.draw(window);
 
     window.display();
 }
 
 void Game::doCollisions() {
-    if (checkCollision(ball, Player1)) {
+    if (checkCollision(ball, player1)) {
         ball.velocity.x = -ball.velocity.x;
     }
 }

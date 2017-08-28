@@ -20,6 +20,6 @@ private:
     sf::RenderWindow window;
     bool isRunning{ false };
 
-    Paddle Player1;
+    Paddle player1;
     Ball ball;
 };

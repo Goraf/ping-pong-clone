@@ -3,7 +3,7 @@
 
 class Paddle {
 public:
-    Paddle();
+    Paddle(float positionX);
 
     void update(const float& dt);
     void draw(sf::RenderTarget& target) const;

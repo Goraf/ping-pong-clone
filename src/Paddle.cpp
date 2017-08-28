@@ -1,8 +1,8 @@
 #include "config.h"
 #include "Paddle.h"
 
-Paddle::Paddle() {
-    position.x = 50.f;
+Paddle::Paddle(float positionX) {
+    position.x = positionX;
     position.y = (windowHeight / 2) - (paddleHeight / 2);
     shape.setSize(sf::Vector2f(paddleWidth, paddleHeight));
     shape.setPosition(position);
