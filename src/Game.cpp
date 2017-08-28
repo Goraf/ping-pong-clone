@@ -52,6 +52,7 @@ void Game::handleInput() {
 
         if (event.type == sf::Event::KeyReleased) {
             player1.stopMovement();
+            player2.stopMovement();
         }
 
         if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
@@ -64,6 +65,13 @@ void Game::handleInput() {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
         player1.moveDown();
     }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::K)) {
+        player2.moveUp();
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::M)) {
+        player2.moveDown();
+    }
+
 }
 
 void Game::update(const float& deltaTime) {
