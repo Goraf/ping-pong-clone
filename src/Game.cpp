@@ -50,6 +50,9 @@ void Game::handleInput() {
         if (event.type == sf::Event::KeyReleased) {
             Player1.stopMovement();
         }
+
+        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
+            ball.launch();
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
