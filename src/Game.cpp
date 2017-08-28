@@ -68,6 +68,9 @@ void Game::update(const float& deltaTime) {
     ball.update(deltaTime);
     Player1.update(deltaTime);
     doCollisions();
+
+    if (ball.getPositionX() <= 0.f || ball.getPositionX() >= windowWidth - 2 * ballRadius)
+        ball.reset();
 }
 
 void Game::render() {
