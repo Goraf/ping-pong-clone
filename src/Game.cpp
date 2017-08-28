@@ -80,7 +80,9 @@ void Game::update(const float& deltaTime) {
     player2.update(deltaTime);
     doCollisions();
 
-    if (ball.getPositionX() <= 0.f || ball.getPositionX() >= windowWidth - 2 * ballRadius)
+    bool outOfLeftBound = (ball.getPositionX() + 2 * ballRadius) <= 0.f;
+    bool outOfRightBound = ball.getPositionX() >= windowWidth;
+    if (outOfLeftBound || outOfRightBound)
         ball.reset();
 }
 
