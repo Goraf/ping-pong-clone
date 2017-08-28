@@ -4,7 +4,7 @@
 Ball::Ball() {
     shape.setRadius(ballRadius);
     shape.setFillColor(sf::Color::Blue);
-    setPositionInCenter();
+    reset();
 }
 
 void Ball::update(const float& dt) {
@@ -22,7 +22,9 @@ void Ball::draw(sf::RenderTarget & target) const {
     target.draw(shape);
 }
 
-void Ball::setPositionInCenter() {
+void Ball::reset() {
+    velocity.x = 0.f;
+    velocity.y = 0.f;
     float horizonatlCenter = windowWidth / 2.f - shape.getRadius();
     float verticalCenter = windowHeight / 2.f - shape.getRadius();
     shape.setPosition(horizonatlCenter, verticalCenter);

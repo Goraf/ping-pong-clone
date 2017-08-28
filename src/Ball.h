@@ -7,7 +7,7 @@ public:
 
     void update(const float& dt);
     void draw(sf::RenderTarget& target) const;
-    void setPositionInCenter();
+    void reset();
 
     float getPositionX() { return shape.getPosition().x; }
     float getPositionY() { return shape.getPosition().y; }
