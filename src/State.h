@@ -9,6 +9,7 @@ namespace sf
 class State {
 public:
     State(sf::RenderWindow& window) : window(window) { }
+    virtual ~State() { }
 
     virtual void onEnter() { }
     virtual void onExit() { }
