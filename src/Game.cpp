@@ -1,13 +1,13 @@
 #include <iostream>
 #include "config.h"
 #include "Game.h"
-#include "PlayState.h"
+#include "TitleState.h"
 
 Game::Game() : 
     stateManager()
 {
     window.create(sf::VideoMode(windowWidth, windowHeight), windowTitle, sf::Style::Titlebar | sf::Style::Close);
-    stateManager.push(new PlayState(&stateManager, window));
+    stateManager.push(new TitleState(&stateManager, window));
 }
 
 void Game::run() {
