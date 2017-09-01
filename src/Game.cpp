@@ -4,10 +4,10 @@
 #include "PlayState.h"
 
 Game::Game() : 
-    stateManger()
+    stateManager()
 {
     window.create(sf::VideoMode(windowWidth, windowHeight), windowTitle, sf::Style::Titlebar | sf::Style::Close);
-    stateManger.push(new PlayState(&stateManger, window));
+    stateManager.push(new PlayState(&stateManager, window));
 }
 
 void Game::run() {
@@ -45,7 +45,7 @@ void Game::run() {
 void Game::handleInput() {
     sf::Event event;
     while (window.pollEvent(event)) {
-        stateManger.getCurrentState()->handleEvents(event);
+        stateManager.getCurrentState()->handleEvents(event);
 
         if (event.type == sf::Event::Closed) {
             window.close();
@@ -55,13 +55,13 @@ void Game::handleInput() {
 }
 
 void Game::update(const float& deltaTime) {
-    stateManger.getCurrentState()->update(deltaTime);
+    stateManager.getCurrentState()->update(deltaTime);
 }
 
 void Game::render() {
     window.clear();
 
-    stateManger.getCurrentState()->render();
+    stateManager.getCurrentState()->render();
 
     window.display();
 }
