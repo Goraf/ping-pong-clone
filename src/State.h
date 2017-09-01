@@ -6,9 +6,11 @@ namespace sf
     class RenderWindow;
 }
 
+class GameStateManager;
+
 class State {
 public:
-    State(sf::RenderWindow& window) : window(window) { }
+    State(GameStateManager* manager, sf::RenderWindow& window);
     virtual ~State() { }
 
     virtual void onEnter() { }
@@ -18,8 +20,10 @@ public:
     virtual void update(const float& deltaTime) = 0;
     virtual void render() = 0;
 
-protected:
-    sf::RenderWindow& window;
+    void changeState(State* state);
 
+protected:
+    GameStateManager* stateManager;
+    sf::RenderWindow& window;
 };
 
