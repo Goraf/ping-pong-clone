@@ -1,7 +1,6 @@
 #pragma once
 #include <SFML\Graphics.hpp>
-#include "Ball.h"
-#include "Paddle.h"
+#include "GameStateManager.h"
 
 
 class Game {
@@ -14,13 +13,7 @@ private:
     void update(const float& deltaTime);
     void render();
 
-    void doCollisions();
-    bool checkCollision(Ball &circle, Paddle &rect);
-
     sf::RenderWindow window;
+    GameStateManager stateManger;
     bool isRunning{ false };
-
-    Paddle player1;
-    Paddle player2;
-    Ball ball;
 };
