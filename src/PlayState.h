@@ -1,5 +1,10 @@
 #pragma once
+#include "Ball.h"
+#include "Paddle.h"
 #include "State.h"
+
+class Ball;
+class Paddle;
 
 class PlayState : public State {
 public:
@@ -11,6 +16,10 @@ public:
 
 
 private:
+    void doCollisions();
+    bool checkCollision(Ball &circle, Paddle &rect);
 
+    Paddle player1;
+    Paddle player2;
+    Ball ball;
 };
-

@@ -1,13 +1,13 @@
 #include <iostream>
 #include "config.h"
 #include "Game.h"
-
+#include "PlayState.h"
 
 Game::Game() : 
-    player1(50.f),
-    player2(windowWidth - 50.f - paddleWidth)
+    stateManger()
 {
     window.create(sf::VideoMode(windowWidth, windowHeight), windowTitle, sf::Style::Titlebar | sf::Style::Close);
+    stateManger.push(new PlayState(&stateManger, window));
 }
 
 void Game::run() {
@@ -45,71 +45,23 @@ void Game::run() {
 void Game::handleInput() {
     sf::Event event;
     while (window.pollEvent(event)) {
+        stateManger.getCurrentState()->handleEvents(event);
+
         if (event.type == sf::Event::Closed) {
             window.close();
             isRunning = false;
         }
-
-        if (event.type == sf::Event::KeyReleased) {
-            player1.stopMovement();
-            player2.stopMovement();
-        }
-
-        if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
-            ball.launch();
     }
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-        player1.moveUp();
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
-        player1.moveDown();
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::K)) {
-        player2.moveUp();
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::M)) {
-        player2.moveDown();
-    }
-
 }
 
 void Game::update(const float& deltaTime) {
-    ball.update(deltaTime);
-    player1.update(deltaTime);
-    player2.update(deltaTime);
-    doCollisions();
-
-    bool outOfLeftBound = (ball.getPositionX() + 2 * ballRadius) <= 0.f;
-    bool outOfRightBound = ball.getPositionX() >= windowWidth;
-    if (outOfLeftBound || outOfRightBound)
-        ball.reset();
+    stateManger.getCurrentState()->update(deltaTime);
 }
 
 void Game::render() {
     window.clear();
 
-    ball.draw(window);
-    player1.draw(window);
-    player2.draw(window);
+    stateManger.getCurrentState()->render();
 
     window.display();
-}
-
-void Game::doCollisions() {
-    if (checkCollision(ball, player1))
-        ball.velocity.x = -ball.velocity.x;
-
-    if (checkCollision(ball, player2))
-        ball.velocity.x = -ball.velocity.x;
-}
-
-bool Game::checkCollision(Ball &ball, Paddle &rect) {
-    bool collideX = ball.getPositionX() + 2*ballRadius >= rect.getPositionX() &&
-        ball.getPositionX() <= rect.getPositionX() + paddleWidth;
-
-    bool collideY = ball.getPositionY() + 2*ballRadius >= rect.getPositionY() &&
-        ball.getPositionY() <= rect.getPositionY() + paddleHeight;
-
-    return collideX && collideY;
 }
