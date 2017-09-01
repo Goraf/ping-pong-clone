@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="src\Ball.cpp" />
     <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\GameStateManager.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Paddle.cpp" />
   </ItemGroup>
@@ -142,6 +143,7 @@
     <ClInclude Include="src\config.h" />
     <ClInclude Include="src\Ball.h" />
     <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\GameStateManager.h" />
     <ClInclude Include="src\Paddle.h" />
     <ClInclude Include="src\State.h" />
   </ItemGroup>
