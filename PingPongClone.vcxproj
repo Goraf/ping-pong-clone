@@ -87,6 +87,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(LIBS_DIR)\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -100,6 +101,7 @@
     <Link>
       <AdditionalDependencies>sfml-system-d.lib;sfml-main-d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(LIBS_DIR)\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -113,6 +115,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -126,10 +129,28 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Ball.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\GameStateManager.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Paddle.cpp" />
+    <ClCompile Include="src\PlayState.cpp" />
+    <ClCompile Include="src\State.cpp" />
+    <ClCompile Include="src\TitleState.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\config.h" />
+    <ClInclude Include="src\Ball.h" />
+    <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\GameStateManager.h" />
+    <ClInclude Include="src\Paddle.h" />
+    <ClInclude Include="src\PlayState.h" />
+    <ClInclude Include="src\State.h" />
+    <ClInclude Include="src\TitleState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
