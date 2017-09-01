@@ -138,6 +138,7 @@
     <ClCompile Include="src\GameStateManager.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Paddle.cpp" />
+    <ClCompile Include="src\PlayState.cpp" />
     <ClCompile Include="src\State.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +147,7 @@
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\GameStateManager.h" />
     <ClInclude Include="src\Paddle.h" />
+    <ClInclude Include="src\PlayState.h" />
     <ClInclude Include="src\State.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
