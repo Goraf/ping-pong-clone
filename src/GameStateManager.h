@@ -4,8 +4,8 @@
 #include "State.h"
 
 
-
-class GameStateManager {
+class GameStateManager
+{
 public:
     GameStateManager();
 
@@ -16,4 +16,3 @@ public:
 private:
     std::vector<std::unique_ptr<State>> states;
 };
-

@@ -3,14 +3,15 @@
 #include "Game.h"
 #include "TitleState.h"
 
-Game::Game() : 
+Game::Game() :
     stateManager()
 {
     window.create(sf::VideoMode(windowWidth, windowHeight), windowTitle, sf::Style::Titlebar | sf::Style::Close);
     stateManager.push(new TitleState(&stateManager, window));
 }
 
-void Game::run() {
+void Game::run()
+{
     isRunning = true;
     sf::Clock clock;
     const float deltaTime{ 0.01f };
@@ -24,10 +25,11 @@ void Game::run() {
     while (isRunning) {
         newTime = clock.getElapsedTime();
         frameTime = newTime - currentTime;
+
         if (frameTime.asSeconds() > 0.25f)
             frameTime = sf::seconds(0.25f);
-        currentTime = newTime;
 
+        currentTime = newTime;
         accumulator += frameTime.asSeconds();
 
         handleInput();
@@ -42,9 +44,11 @@ void Game::run() {
     }
 }
 
-void Game::handleInput() {
+void Game::handleInput()
+{
     sf::Event event;
-    while (window.pollEvent(event)) {
+    while (window.pollEvent(event)) 
+    {
         stateManager.getCurrentState()->handleEvents(event);
 
         if (event.type == sf::Event::Closed) {
@@ -54,11 +58,13 @@ void Game::handleInput() {
     }
 }
 
-void Game::update(const float& deltaTime) {
+void Game::update(const float& deltaTime)
+{
     stateManager.getCurrentState()->update(deltaTime);
 }
 
-void Game::render() {
+void Game::render()
+{
     window.clear();
 
     stateManager.getCurrentState()->render();

@@ -1,6 +1,7 @@
 #include "Ball.h"
 #include "config.h"
 
+
 Ball::Ball() :
     gen(rd()),
     dist(0, 1)
@@ -10,19 +11,23 @@ Ball::Ball() :
     reset();
 }
 
-void Ball::update(const float& dt) {
+void Ball::update(const float& dt)
+{
     shape.move(velocity * dt);
 
-    if (shape.getPosition().y <= 0.f || shape.getPosition().y >= windowHeight - 2 * ballRadius) {
+    if (shape.getPosition().y <= 0.f || shape.getPosition().y >= windowHeight - 2 * ballRadius)
+    {
         velocity.y = -velocity.y;
     }
 }
 
-void Ball::draw(sf::RenderTarget & target) const {
+void Ball::draw(sf::RenderTarget & target) const
+{
     target.draw(shape);
 }
 
-void Ball::reset() {
+void Ball::reset()
+{
     velocity.x = 0.f;
     velocity.y = 0.f;
     isMoving = false;
@@ -32,8 +37,10 @@ void Ball::reset() {
     shape.setPosition(horizonatlCenter, verticalCenter);
 }
 
-void Ball::launch() {
-    if (!isMoving) {
+void Ball::launch()
+{
+    if (!isMoving)
+    {
         if (dist(gen))
             velocity.x = 300.f;
         else

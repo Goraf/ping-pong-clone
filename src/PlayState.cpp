@@ -1,16 +1,18 @@
 #include "config.h"
 #include "PlayState.h"
 
+
 PlayState::PlayState(GameStateManager* manager, sf::RenderWindow& window) :
     State(manager, window),
     player1(50.f),
     player2(windowWidth - 50.f - paddleWidth)
 {
-
 }
 
-void PlayState::handleEvents(const sf::Event& event) {
-    if (event.type == sf::Event::KeyReleased) {
+void PlayState::handleEvents(const sf::Event& event)
+{
+    if (event.type == sf::Event::KeyReleased)
+    {
         player1.stopMovement();
         player2.stopMovement();
     }
@@ -18,21 +20,27 @@ void PlayState::handleEvents(const sf::Event& event) {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
         ball.launch();
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+    {
         player1.moveUp();
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+    {
         player1.moveDown();
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::K)) {
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))
+    {
         player2.moveUp();
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::M)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::M))
+    {
         player2.moveDown();
     }
 }
 
-void PlayState::update(const float& deltaTime) {
+void PlayState::update(const float& deltaTime)
+{
     ball.update(deltaTime);
     player1.update(deltaTime);
     player2.update(deltaTime);
@@ -44,13 +52,15 @@ void PlayState::update(const float& deltaTime) {
         ball.reset();
 }
 
-void PlayState::render() {
+void PlayState::render()
+{
     ball.draw(window);
     player1.draw(window);
     player2.draw(window);
 }
 
-void PlayState::doCollisions() {
+void PlayState::doCollisions()
+{
     if (checkCollision(ball, player1))
         ball.velocity.x = -ball.velocity.x;
 
@@ -58,7 +68,8 @@ void PlayState::doCollisions() {
         ball.velocity.x = -ball.velocity.x;
 }
 
-bool PlayState::checkCollision(Ball &ball, Paddle &rect) {
+bool PlayState::checkCollision(Ball &ball, Paddle &rect)
+{
     const bool collideX = ball.getPositionX() + 2 * ballRadius >= rect.getPositionX() &&
         ball.getPositionX() <= rect.getPositionX() + paddleWidth;
 

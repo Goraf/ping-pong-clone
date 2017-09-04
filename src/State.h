@@ -8,7 +8,9 @@ namespace sf
 
 class GameStateManager;
 
-class State {
+
+class State
+{
 public:
     State(GameStateManager* manager, sf::RenderWindow& window);
     virtual ~State() { }
@@ -26,4 +28,3 @@ protected:
     GameStateManager* stateManager;
     sf::RenderWindow& window;
 };
-

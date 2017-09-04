@@ -1,13 +1,15 @@
 #include "GameStateManager.h"
 #include "State.h"
 
+
 State::State(GameStateManager* manager, sf::RenderWindow& window) :
     stateManager(manager),
-    window(window) 
+    window(window)
 {
 
 }
 
-void State::changeState(State* state) {
+void State::changeState(State* state)
+{
     stateManager->push(state);
 }

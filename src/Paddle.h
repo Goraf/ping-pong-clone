@@ -1,7 +1,9 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 
-class Paddle {
+
+class Paddle
+{
 public:
     Paddle(float positionX);
 
@@ -12,10 +14,13 @@ public:
     void moveDown();
     void stopMovement();
 
-    float getPositionX() {
+    float getPositionX()
+    {
         return shape.getPosition().x;
     }
-    float getPositionY() {
+
+    float getPositionY()
+    {
         return shape.getPosition().y;
     }
 

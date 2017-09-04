@@ -3,9 +3,8 @@
 #include "TitleState.h"
 
 
-
 TitleState::TitleState(GameStateManager* manager, sf::RenderWindow& window) :
-    State(manager, window) 
+    State(manager, window)
 {
     if (!font.loadFromFile("media/Sansation.ttf"))
         window.close();
@@ -35,19 +34,20 @@ TitleState::TitleState(GameStateManager* manager, sf::RenderWindow& window) :
     enter.setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f));
     enter.setPosition(windowWidth / 2.f, windowHeight - 100.f);
     text.emplace_back(enter);
-
 }
 
-void TitleState::handleEvents(const sf::Event& event) {
+void TitleState::handleEvents(const sf::Event& event)
+{
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
         changeState(new PlayState(stateManager, window));
 }
 
-void TitleState::update(const float& deltaTime) {
-
+void TitleState::update(const float& deltaTime)
+{
 }
 
-void TitleState::render() {
+void TitleState::render()
+{
     for (const sf::Text& t : text)
         window.draw(t);
 }
