@@ -68,13 +68,13 @@ void PlayState::doCollisions()
         ball.velocity.x = -ball.velocity.x;
 }
 
-bool PlayState::checkCollision(Ball &ball, Paddle &rect)
+bool PlayState::checkCollision(Ball &b, Paddle &p)
 {
-    const bool collideX = ball.getPositionX() + 2 * ballRadius >= rect.getPositionX() &&
-        ball.getPositionX() <= rect.getPositionX() + paddleWidth;
+    const bool collideX = b.getPositionX() + 2 * ballRadius >= p.getPositionX() &&
+        b.getPositionX() <= p.getPositionX() + paddleWidth;
 
-    const bool collideY = ball.getPositionY() + 2 * ballRadius >= rect.getPositionY() &&
-        ball.getPositionY() <= rect.getPositionY() + paddleHeight;
+    const bool collideY = b.getPositionY() + 2 * ballRadius >= p.getPositionY() &&
+        b.getPositionY() <= p.getPositionY() + paddleHeight;
 
     return collideX && collideY;
 }
