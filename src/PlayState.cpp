@@ -38,8 +38,8 @@ void PlayState::update(const float& deltaTime) {
     player2.update(deltaTime);
     doCollisions();
 
-    bool outOfLeftBound = (ball.getPositionX() + 2 * ballRadius) <= 0.f;
-    bool outOfRightBound = ball.getPositionX() >= windowWidth;
+    const bool outOfLeftBound = (ball.getPositionX() + 2 * ballRadius) <= 0.f;
+    const bool outOfRightBound = ball.getPositionX() >= windowWidth;
     if (outOfLeftBound || outOfRightBound)
         ball.reset();
 }
@@ -59,10 +59,10 @@ void PlayState::doCollisions() {
 }
 
 bool PlayState::checkCollision(Ball &ball, Paddle &rect) {
-    bool collideX = ball.getPositionX() + 2 * ballRadius >= rect.getPositionX() &&
+    const bool collideX = ball.getPositionX() + 2 * ballRadius >= rect.getPositionX() &&
         ball.getPositionX() <= rect.getPositionX() + paddleWidth;
 
-    bool collideY = ball.getPositionY() + 2 * ballRadius >= rect.getPositionY() &&
+    const bool collideY = ball.getPositionY() + 2 * ballRadius >= rect.getPositionY() &&
         ball.getPositionY() <= rect.getPositionY() + paddleHeight;
 
     return collideX && collideY;
