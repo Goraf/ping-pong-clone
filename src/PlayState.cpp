@@ -5,7 +5,7 @@
 PlayState::PlayState(GameStateManager* manager, sf::RenderWindow& window) :
     State(manager, window),
     player1(50.f),
-    player2(windowWidth - 50.f - paddleWidth)
+    player2(windowWidth - 50.f)
 {
 }
 
@@ -47,7 +47,7 @@ void PlayState::update(const float& deltaTime)
     doCollisions();
 
     const bool outOfLeftBound = (ball.getPositionX() + 2 * ballRadius) <= 0.f;
-    const bool outOfRightBound = ball.getPositionX() >= windowWidth;
+    const bool outOfRightBound = (ball.getPositionX() - 2 * ballRadius) >= windowWidth;
     if (outOfLeftBound || outOfRightBound)
         ball.reset();
 }
@@ -70,11 +70,11 @@ void PlayState::doCollisions()
 
 bool PlayState::checkCollision(Ball &b, Paddle &p)
 {
-    const bool collideX = b.getPositionX() + 2 * ballRadius >= p.getPositionX() &&
-        b.getPositionX() <= p.getPositionX() + paddleWidth;
+    const bool collideX = b.getPositionX() + ballRadius >= p.getPositionX() - paddleHalfWidth &&
+        b.getPositionX() - ballRadius <= p.getPositionX() + paddleHalfWidth;
 
-    const bool collideY = b.getPositionY() + 2 * ballRadius >= p.getPositionY() &&
-        b.getPositionY() <= p.getPositionY() + paddleHeight;
+    const bool collideY = b.getPositionY() + ballRadius >= p.getPositionY() - paddleHalfHeight &&
+        b.getPositionY() - ballRadius <= p.getPositionY() + paddleHalfHeight;
 
     return collideX && collideY;
 }

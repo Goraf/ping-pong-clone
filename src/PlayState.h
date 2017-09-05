@@ -18,7 +18,7 @@ public:
 
 private:
     void doCollisions();
-    bool checkCollision(Ball &circle, Paddle &rect);
+    bool checkCollision(Ball &b, Paddle &p);
 
     Paddle player1;
     Paddle player2;

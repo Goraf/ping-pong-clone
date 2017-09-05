@@ -7,6 +7,7 @@ Ball::Ball() :
     dist(0, 1)
 {
     shape.setRadius(ballRadius);
+    shape.setOrigin(shape.getRadius(), shape.getRadius());
     shape.setFillColor(sf::Color::Blue);
     reset();
 }
@@ -15,7 +16,7 @@ void Ball::update(const float& dt)
 {
     shape.move(velocity * dt);
 
-    if (shape.getPosition().y <= 0.f || shape.getPosition().y >= windowHeight - 2 * ballRadius)
+    if (shape.getPosition().y - ballRadius <= 0.f || shape.getPosition().y + ballRadius >= windowHeight)
     {
         velocity.y = -velocity.y;
     }
@@ -32,8 +33,8 @@ void Ball::reset()
     velocity.y = 0.f;
     isMoving = false;
 
-    float horizonatlCenter = windowWidth / 2.f - shape.getRadius();
-    float verticalCenter = windowHeight / 2.f - shape.getRadius();
+    float horizonatlCenter = windowWidth / 2.f;
+    float verticalCenter = windowHeight / 2.f;
     shape.setPosition(horizonatlCenter, verticalCenter);
 }
 
