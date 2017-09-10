@@ -18,7 +18,8 @@ public:
 
 private:
     void doCollisions();
-    bool checkCollision(Ball &b, Paddle &p);
+    void checkCollision(Ball &b, Paddle &p);
+    void calculateProjection(float x, float y, float oH, float oV, Ball & b, Paddle & p);
 
     Paddle player1;
     Paddle player2;

@@ -16,9 +16,20 @@ void Ball::update(const float& dt)
 {
     shape.move(velocity * dt);
 
-    if (shape.getPosition().y - ballRadius <= 0.f || shape.getPosition().y + ballRadius >= windowHeight)
+    float dy = 0.f - (shape.getPosition().y - ballRadius);
+    if (dy > 0.f)
     {
+        shape.move(0.f, dy);
         velocity.y = -velocity.y;
+    }
+    else
+    {
+        dy = (shape.getPosition().y + ballRadius) - windowHeight;
+        if (dy > 0.f)
+        {
+            shape.move(0.f, -dy);
+            velocity.y = -velocity.y;
+        }
     }
 }
 
@@ -54,4 +65,21 @@ void Ball::launch()
 
         isMoving = true;
     }
+}
+
+void Ball::resolveCollision(float px, float py, float dx, float dy, Paddle & p)
+{
+    shape.move(px, py);
+
+    if (dx != 0.f)
+        velocity.x *= -1;
+    if (dy != 0.f)
+        velocity.y *= -1;
+    if (dx == 0.f && dy == 0.f)
+    {
+        velocity.x *= -1.f;
+        velocity.y *= -1.f;
+    }
+
+    velocity *= 1.1f;
 }

@@ -1,3 +1,4 @@
+#include <math.h>
 #include "config.h"
 #include "PlayState.h"
 
@@ -61,20 +62,140 @@ void PlayState::render()
 
 void PlayState::doCollisions()
 {
-    if (checkCollision(ball, player1))
-        ball.velocity.x = -ball.velocity.x;
-
-    if (checkCollision(ball, player2))
-        ball.velocity.x = -ball.velocity.x;
+    checkCollision(ball, player1);
+    checkCollision(ball, player2);
 }
 
-bool PlayState::checkCollision(Ball &b, Paddle &p)
+void PlayState::checkCollision(Ball & b, Paddle & p)
 {
-    const bool collideX = b.getPositionX() + ballRadius >= p.getPositionX() - paddleHalfWidth &&
-        b.getPositionX() - ballRadius <= p.getPositionX() + paddleHalfWidth;
+    float dx = b.getPositionX() - p.getPositionX();
+    float px = (paddleHalfWidth + ballRadius) - std::fabsf(dx);//penetration depth in x
 
-    const bool collideY = b.getPositionY() + ballRadius >= p.getPositionY() - paddleHalfHeight &&
-        b.getPositionY() - ballRadius <= p.getPositionY() + paddleHalfHeight;
+    if (0 < px)
+    {
+        float dy = b.getPositionY() - p.getPositionY();
+        float py = (paddleHalfHeight + ballRadius) - std::fabsf(dy);//pen depth in y
 
-    return collideX && collideY;
+        if (0 < py)
+        {
+            //object may be colliding with tile
+
+            //determine grid/voronoi region of circle center
+            float oH = 0.f;
+            float oV = 0.f;
+            if (dx < -paddleHalfWidth)
+            {
+                //circle is on left side of tile
+                oH = -1.f;
+            }
+            else if (paddleHalfWidth < dx)
+            {
+                //circle is on right side of tile
+                oH = 1.f;
+            }
+
+            if (dy < -paddleHalfHeight)
+            {
+                //circle is on top side of tile
+                oV = -1.f;
+            }
+            else if (paddleHalfHeight < dy)
+            {
+                //circle is on bottom side of tile
+                oV = 1.f;
+            }
+
+            calculateProjection(px, py, oH, oV, b, p);
+        }
+    }
 }
+
+void PlayState::calculateProjection(float x, float y, float oH, float oV, Ball & b, Paddle& p)
+{
+    //if we're colliding vs. the current cell, we need to project along the
+    //smallest penetration vector.
+    //if we're colliding vs. horiz. or vert. neighb, we simply project horiz/vert
+    //if we're colliding diagonally, we need to collide vs. tile corner
+
+    if (oH == 0.f)
+    {
+        if (oV == 0.f)
+        {
+
+            //collision with current cell
+            if (x < y)
+            {
+                //penetration in x is smaller; project in x
+                float dx = b.getPositionX() - p.getPositionX();//get sign for projection along x-axis
+
+                 //NOTE: should we handle the delta == 0 case?! and how? (project towards oldpos?)
+                if (dx < 0)
+                {
+                    b.resolveCollision(-x, 0, -1, 0, p);
+                }
+                else
+                {
+                    b.resolveCollision(x, 0, 1, 0, p);
+                }
+            }
+            else
+            {
+                //penetration in y is smaller; project in y
+                float dy = b.getPositionY() - p.getPositionY();//get sign for projection along y-axis
+
+                //NOTE: should we handle the delta == 0 case?! and how? (project towards oldpos?)
+                if (dy < 0)
+                {
+                    b.resolveCollision(0, -y, 0, -1, p);
+                }
+                else
+                {
+                    b.resolveCollision(0, y, 0, 1, p);
+                }
+            }
+        }
+        else
+        {
+            //collision with vertical neighbor
+            b.resolveCollision(0, y*oV, 0, oV, p);
+        }
+    }
+    else if (oV == 0.f)
+    {
+        //collision with horizontal neighbor
+        b.resolveCollision(x*oH, 0, oH, 0, p);
+    }
+    else
+    {
+        //diagonal collision
+
+        //get diag vertex position
+        float vertexX = p.getPositionX() + (oH*paddleHalfWidth);
+        float vertexY = p.getPositionY() + (oV*paddleHalfHeight);
+
+        float dx = b.getPositionX() - vertexX;
+        float dy = b.getPositionY() - vertexY;
+
+        float length = std::sqrtf(dx*dx + dy*dy);
+        float penetration = ballRadius - length;
+        if (0.f < penetration)
+        {
+            //vertex is in the circle; project outward
+            if (length == 0.f)
+            {
+                //project out by 45deg
+                dx = oH / std::sqrtf(2.f);
+                dy = oV / std::sqrtf(2.f);
+            }
+            else
+            {
+                dx /= length;
+                dy /= length;
+            }
+
+            b.resolveCollision(dx*penetration, dy*penetration, dx, dy, p);
+        }
+    }
+}
+
+

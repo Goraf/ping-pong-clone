@@ -2,6 +2,8 @@
 #include <SFML\Graphics.hpp>
 #include <random>
 
+class Paddle;
+
 class Ball
 {
 public:
@@ -11,6 +13,8 @@ public:
     void draw(sf::RenderTarget& target) const;
     void reset();
     void launch();
+
+    void resolveCollision(float px, float py, float dx, float dy, Paddle & p);
 
     float getPositionX()
     {
