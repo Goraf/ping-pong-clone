@@ -136,6 +136,7 @@
     <ClCompile Include="src\Ball.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameStateManager.cpp" />
+    <ClCompile Include="src\InstructionsState.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MenuState.cpp" />
     <ClCompile Include="src\Paddle.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="src\Ball.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\GameStateManager.h" />
+    <ClInclude Include="src\InstructionsState.h" />
     <ClInclude Include="src\MenuState.h" />
     <ClInclude Include="src\Paddle.h" />
     <ClInclude Include="src\PauseState.h" />
