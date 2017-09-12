@@ -3,6 +3,7 @@
 #include "GameStateManager.h"
 #include "PauseState.h"
 #include "PlayState.h"
+#include "WinState.h"
 
 
 PlayState::PlayState(GameStateManager* manager, sf::RenderWindow& window) :
@@ -50,6 +51,7 @@ void PlayState::update(const float& deltaTime)
     ball.update(deltaTime);
     player1.update(deltaTime);
     player2.update(deltaTime);
+
     doCollisions();
 
     const bool outOfLeftBound = (ball.getPositionX() + 2 * ballRadius) <= 0.f;
@@ -66,6 +68,7 @@ void PlayState::update(const float& deltaTime)
         ball.reset();
     }
 
+    checkWinner();
 }
 
 void PlayState::render()
@@ -210,6 +213,18 @@ void PlayState::calculateProjection(float x, float y, float oH, float oV, Ball &
 
             b.resolveCollision(dx*penetration, dy*penetration, dx, dy, p);
         }
+    }
+}
+
+void PlayState::checkWinner()
+{
+    if (player1.getPoints() == WIN_SCORE)
+    {
+        stateManager->push(new WinState(stateManager, window, Player1));
+    }
+    else if (player2.getPoints() == WIN_SCORE)
+    {
+        stateManager->push(new WinState(stateManager, window, Player2));
     }
 }
 

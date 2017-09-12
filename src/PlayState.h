@@ -18,6 +18,8 @@ private:
     void checkCollision(Ball &b, Paddle &p);
     void calculateProjection(float x, float y, float oH, float oV, Ball & b, Paddle & p);
 
+    void checkWinner();
+
     Paddle player1;
     Paddle player2;
     Ball ball;
