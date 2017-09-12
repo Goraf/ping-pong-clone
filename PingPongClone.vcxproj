@@ -142,6 +142,7 @@
     <ClCompile Include="src\PlayState.cpp" />
     <ClCompile Include="src\State.cpp" />
     <ClCompile Include="src\TitleState.cpp" />
+    <ClCompile Include="src\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\config.h" />
@@ -153,6 +154,7 @@
     <ClInclude Include="src\PlayState.h" />
     <ClInclude Include="src\State.h" />
     <ClInclude Include="src\TitleState.h" />
+    <ClInclude Include="src\WinState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
