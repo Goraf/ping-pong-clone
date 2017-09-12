@@ -2,7 +2,7 @@
 
 GameStateManager::GameStateManager()
 {
-    states.reserve(4);
+    states.reserve(3);
 }
 
 void GameStateManager::push(State* state)
@@ -18,6 +18,12 @@ void GameStateManager::pop()
         states.back()->onExit();
         states.pop_back();
     }
+}
+
+void GameStateManager::replace(State * state)
+{
+    pop();
+    push(state);
 }
 
 State* GameStateManager::getCurrentState()

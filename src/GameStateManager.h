@@ -11,6 +11,7 @@ public:
 
     void push(State* state);
     void pop();
+    void replace(State* state);
     State* getCurrentState();
 
 private:
