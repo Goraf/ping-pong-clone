@@ -1,5 +1,5 @@
 #include "config.h"
-#include "GameStateManager.h"
+#include "InstructionsState.h"
 #include "PauseState.h"
 
 
@@ -38,8 +38,20 @@ PauseState::PauseState(GameStateManager * manager, sf::RenderWindow & window) :
 
 void PauseState::handleEvents(const sf::Event & event)
 {
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-        stateManager->pop();
+    if (event.type != sf::Event::KeyPressed)
+    {
+        return;
+    }
+
+    if (event.key.code == sf::Keyboard::Escape || event.key.code == sf::Keyboard::Return)
+    {
+        popState();
+    }
+
+    if (event.key.code == sf::Keyboard::I)
+    {
+        changeState(new InstructionsState(stateManager, window));
+    }
 }
 
 void PauseState::update(const float & deltaTime)

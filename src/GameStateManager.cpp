@@ -2,7 +2,7 @@
 
 GameStateManager::GameStateManager()
 {
-    states.reserve(3);
+    states.reserve(4);
 }
 
 void GameStateManager::push(State* state)
