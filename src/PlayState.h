@@ -3,9 +3,6 @@
 #include "Paddle.h"
 #include "State.h"
 
-class Ball;
-class Paddle;
-
 
 class PlayState : public State
 {

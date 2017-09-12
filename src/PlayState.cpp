@@ -1,5 +1,7 @@
 #include <math.h>
 #include "config.h"
+#include "GameStateManager.h"
+#include "PauseState.h"
 #include "PlayState.h"
 
 
@@ -17,6 +19,9 @@ void PlayState::handleEvents(const sf::Event& event)
         player1.stopMovement();
         player2.stopMovement();
     }
+
+    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+        stateManager->push(new PauseState(stateManager, window));
 
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
         ball.launch();
