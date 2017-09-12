@@ -20,8 +20,11 @@ void PlayState::handleEvents(const sf::Event& event)
         player2.stopMovement();
     }
 
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
+    if (event.type == sf::Event::KeyPressed && 
+        (event.key.code == sf::Keyboard::Escape || event.key.code == sf::Keyboard::P))
+    {
         changeState(new PauseState(stateManager, window));
+    }
 
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
         ball.launch();
