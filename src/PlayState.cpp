@@ -1,6 +1,5 @@
 #include <math.h>
 #include "config.h"
-#include "GameStateManager.h"
 #include "PauseState.h"
 #include "PlayState.h"
 #include "WinState.h"
@@ -22,7 +21,7 @@ void PlayState::handleEvents(const sf::Event& event)
     }
 
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-        stateManager->push(new PauseState(stateManager, window));
+        changeState(new PauseState(stateManager, window));
 
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
         ball.launch();
@@ -220,11 +219,11 @@ void PlayState::checkWinner()
 {
     if (player1.getPoints() == WIN_SCORE)
     {
-        stateManager->push(new WinState(stateManager, window, Player1));
+        replaceState(new WinState(stateManager, window, Player1));
     }
     else if (player2.getPoints() == WIN_SCORE)
     {
-        stateManager->push(new WinState(stateManager, window, Player2));
+        replaceState(new WinState(stateManager, window, Player2));
     }
 }
 

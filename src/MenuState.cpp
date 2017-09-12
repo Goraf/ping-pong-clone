@@ -1,5 +1,4 @@
 #include "config.h"
-#include "GameStateManager.h"
 #include "MenuState.h"
 #include "PlayState.h"
 
@@ -37,7 +36,7 @@ void MenuState::handleEvents(const sf::Event & event)
     {
         if (optionIndex == Play)
         {
-            stateManager->push(new PlayState(stateManager, window));
+            changeState(new PlayState(stateManager, window));
         }
     }
     else if (event.key.code == sf::Keyboard::Up)

@@ -39,7 +39,7 @@ TitleState::TitleState(GameStateManager* manager, sf::RenderWindow& window) :
 void TitleState::handleEvents(const sf::Event& event)
 {
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Return)
-        changeState(new MenuState(stateManager, window));
+        replaceState(new MenuState(stateManager, window));
 }
 
 void TitleState::update(const float& deltaTime)

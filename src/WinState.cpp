@@ -1,5 +1,4 @@
 #include "config.h"
-#include "GameStateManager.h"
 #include "WinState.h"
 
 
@@ -30,8 +29,8 @@ WinState::WinState(GameStateManager * manager, sf::RenderWindow & window, Winner
 
 void WinState::handleEvents(const sf::Event & event)
 {
-    if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-        stateManager->pop();
+    if (event.type == sf::Event::KeyPressed)
+        popState();
 }
 
 void WinState::update(const float & deltaTime)
