@@ -24,6 +24,7 @@ private:
     };
 
     sf::Font font;
+    sf::Text title;
     std::vector<sf::Text> options;
     std::size_t optionIndex;
 };

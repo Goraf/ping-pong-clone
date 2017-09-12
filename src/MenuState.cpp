@@ -11,8 +11,15 @@ MenuState::MenuState(GameStateManager * manager, sf::RenderWindow & window) :
     if (!font.loadFromFile("media/Sansation.ttf"))
         window.close();
 
+    title.setString("PingPong Clone");
+    title.setFont(font);
+    title.setCharacterSize(55U);
+    sf::FloatRect bounds = title.getLocalBounds();
+    title.setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f));
+    title.setPosition(windowWidth / 2.f, 100.f);
+
     sf::Text playOption("Play", font, 45U);
-    sf::FloatRect bounds = playOption.getLocalBounds();
+    bounds = playOption.getLocalBounds();
     playOption.setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f));
     playOption.setPosition(windowWidth / 2.f, windowHeight / 2.f);
     playOption.setOutlineThickness(3.f);
@@ -84,6 +91,8 @@ void MenuState::update(const float & deltaTime)
 
 void MenuState::render()
 {
+    window.draw(title);
+
     for (const sf::Text& text : options)
         window.draw(text);
 }
