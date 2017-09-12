@@ -23,6 +23,8 @@ public:
     virtual void render() = 0;
 
     void changeState(State* state);
+    void replaceState(State* state);
+    void popState();
 
 protected:
     GameStateManager* stateManager;
