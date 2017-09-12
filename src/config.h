@@ -11,3 +11,5 @@ constexpr float paddleHalfWidth{ paddleWidth / 2.f };
 constexpr float paddleHalfHeight{ paddleHeight / 2.f };
 
 constexpr float ballRadius{ 20.f };
+
+const int WIN_SCORE = 3;

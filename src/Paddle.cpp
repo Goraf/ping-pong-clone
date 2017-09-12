@@ -14,6 +14,8 @@ Paddle::Paddle(float positionX)
 
     velocity.x = 0.f;
     velocity.y = 0.f;
+
+    score = 0;
 }
 
 void Paddle::update(const float& dt)
@@ -51,4 +53,14 @@ void Paddle::moveDown()
 void Paddle::stopMovement()
 {
     velocity.y = 0.f;
+}
+
+void Paddle::addPoint()
+{
+    ++score;
+}
+
+int Paddle::getPoints()
+{
+    return score;
 }

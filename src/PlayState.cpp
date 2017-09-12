@@ -53,9 +53,19 @@ void PlayState::update(const float& deltaTime)
     doCollisions();
 
     const bool outOfLeftBound = (ball.getPositionX() + 2 * ballRadius) <= 0.f;
-    const bool outOfRightBound = (ball.getPositionX() - 2 * ballRadius) >= windowWidth;
-    if (outOfLeftBound || outOfRightBound)
+    if (outOfLeftBound)
+    {
+        player2.addPoint();
         ball.reset();
+    }
+
+    const bool outOfRightBound = (ball.getPositionX() - 2 * ballRadius) >= windowWidth;
+    if (outOfRightBound)
+    {
+        player1.addPoint();
+        ball.reset();
+    }
+
 }
 
 void PlayState::render()

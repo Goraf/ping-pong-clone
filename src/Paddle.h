@@ -24,8 +24,12 @@ public:
         return shape.getPosition().y;
     }
 
+    void addPoint();
+    int getPoints();
+
 private:
     float speed{ 200 };
+    int score;
 
     sf::RectangleShape shape;
     sf::Vector2f position;
