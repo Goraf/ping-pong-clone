@@ -19,7 +19,7 @@ private:
     enum OptionNames
     {
         Play,
-        Controls,
+        Instructions,
         Exit
     };
 
