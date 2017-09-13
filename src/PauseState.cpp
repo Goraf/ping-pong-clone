@@ -52,6 +52,11 @@ void PauseState::handleEvents(const sf::Event & event)
     {
         changeState(new InstructionsState(stateManager, window));
     }
+
+    if (event.key.code == sf::Keyboard::Q)
+    {
+        resetToFirstState();
+    }
 }
 
 void PauseState::update(const float & deltaTime)
