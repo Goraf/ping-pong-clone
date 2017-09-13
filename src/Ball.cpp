@@ -63,6 +63,7 @@ void Ball::launch()
         else
             velocity.y = -300.f;
 
+        hitsByPaddle = 0;
         isMoving = true;
     }
 }
@@ -70,6 +71,8 @@ void Ball::launch()
 void Ball::resolveCollision(float px, float py, float dx, float dy, Paddle & p)
 {
     shape.move(px, py);
+
+    ++hitsByPaddle;
 
     if (dx != 0.f)
         velocity.x *= -1;

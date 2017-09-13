@@ -26,11 +26,18 @@ public:
         return shape.getPosition().y;
     }
 
+    const unsigned short getHitsByPaddle()
+    {
+        return hitsByPaddle;
+    }
+
     sf::Vector2f velocity;
 
 private:
     sf::CircleShape shape;
     bool isMoving = false;
+
+    unsigned short hitsByPaddle = 0;
 
     std::random_device rd;
     std::mt19937 gen;
