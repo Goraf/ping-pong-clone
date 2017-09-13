@@ -24,6 +24,19 @@ PlayState::PlayState(GameStateManager* manager, sf::RenderWindow& window) :
     bounds = scorePlayer2.getLocalBounds();
     scorePlayer2.setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f));
     scorePlayer2.setPosition(windowWidth - 30.f, 30.f);
+
+    hitsHeader.setString("Hits");
+    hitsHeader.setFont(font);
+    bounds = hitsHeader.getLocalBounds();
+    hitsHeader.setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f));
+    hitsHeader.setPosition(windowWidth / 2.f, 20.f);
+
+    hitsNumber.setString(std::to_string(ball.getHitsByPaddle()));
+    hitsNumber.setFont(font);
+    bounds = hitsNumber.getLocalBounds();
+    hitsNumber.setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f));
+    hitsNumber.setPosition(windowWidth / 2.f, 50.f);
+
 }
 
 void PlayState::handleEvents(const sf::Event& event)
@@ -70,13 +83,18 @@ void PlayState::update(const float& deltaTime)
 
     doCollisions();
 
+    hitsNumber.setString(std::to_string(ball.getHitsByPaddle()));
+    sf::FloatRect bounds = hitsNumber.getLocalBounds();
+    hitsNumber.setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f));
+    hitsNumber.setPosition(windowWidth / 2.f, 50.f);
+
+
     const bool outOfLeftBound = (ball.getPositionX() + 2 * ballRadius) <= 0.f;
     if (outOfLeftBound)
     {
         player2.addPoint();
 
         scorePlayer2.setString(std::to_string(player2.getPoints()));
-
         sf::FloatRect bounds = scorePlayer2.getLocalBounds();
         scorePlayer2.setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f));
         scorePlayer2.setPosition(windowWidth - 30.f, 30.f);
@@ -104,6 +122,8 @@ void PlayState::render()
 {
     window.draw(scorePlayer1);
     window.draw(scorePlayer2);
+    window.draw(hitsHeader);
+    window.draw(hitsNumber);
 
     ball.draw(window);
     player1.draw(window);

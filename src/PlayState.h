@@ -27,4 +27,6 @@ private:
     sf::Font font;
     sf::Text scorePlayer1;
     sf::Text scorePlayer2;
+    sf::Text hitsHeader;
+    sf::Text hitsNumber;
 };
