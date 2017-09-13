@@ -136,21 +136,29 @@
     <ClCompile Include="src\Ball.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameStateManager.cpp" />
+    <ClCompile Include="src\InstructionsState.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\MenuState.cpp" />
     <ClCompile Include="src\Paddle.cpp" />
+    <ClCompile Include="src\PauseState.cpp" />
     <ClCompile Include="src\PlayState.cpp" />
     <ClCompile Include="src\State.cpp" />
     <ClCompile Include="src\TitleState.cpp" />
+    <ClCompile Include="src\WinState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\config.h" />
     <ClInclude Include="src\Ball.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\GameStateManager.h" />
+    <ClInclude Include="src\InstructionsState.h" />
+    <ClInclude Include="src\MenuState.h" />
     <ClInclude Include="src\Paddle.h" />
+    <ClInclude Include="src\PauseState.h" />
     <ClInclude Include="src\PlayState.h" />
     <ClInclude Include="src\State.h" />
     <ClInclude Include="src\TitleState.h" />
+    <ClInclude Include="src\WinState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

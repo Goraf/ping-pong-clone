@@ -4,16 +4,17 @@
 #include "State.h"
 
 
-
-class GameStateManager {
+class GameStateManager
+{
 public:
     GameStateManager();
 
     void push(State* state);
     void pop();
+    void replace(State* state);
+    void resetToFirst();
     State* getCurrentState();
 
 private:
     std::vector<std::unique_ptr<State>> states;
 };
-

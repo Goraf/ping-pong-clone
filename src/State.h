@@ -8,7 +8,9 @@ namespace sf
 
 class GameStateManager;
 
-class State {
+
+class State
+{
 public:
     State(GameStateManager* manager, sf::RenderWindow& window);
     virtual ~State() { }
@@ -21,9 +23,11 @@ public:
     virtual void render() = 0;
 
     void changeState(State* state);
+    void replaceState(State* state);
+    void resetToFirstState();
+    void popState();
 
 protected:
     GameStateManager* stateManager;
     sf::RenderWindow& window;
 };
-

@@ -4,10 +4,16 @@
 #include "State.h"
 
 
-class TitleState : public State
+enum Winner
+{
+    Player1,
+    Player2
+};
+
+class WinState : public State
 {
 public:
-    TitleState(GameStateManager* manager, sf::RenderWindow& window);
+    WinState(GameStateManager* manager, sf::RenderWindow& window, Winner winner);
 
     virtual void handleEvents(const sf::Event& event);
     virtual void update(const float& deltaTime);

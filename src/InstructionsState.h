@@ -4,10 +4,10 @@
 #include "State.h"
 
 
-class TitleState : public State
+class InstructionsState : public State
 {
 public:
-    TitleState(GameStateManager* manager, sf::RenderWindow& window);
+    InstructionsState(GameStateManager* manager, sf::RenderWindow& window);
 
     virtual void handleEvents(const sf::Event& event);
     virtual void update(const float& deltaTime);

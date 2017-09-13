@@ -3,10 +3,9 @@
 #include "Paddle.h"
 #include "State.h"
 
-class Ball;
-class Paddle;
 
-class PlayState : public State {
+class PlayState : public State
+{
 public:
     PlayState(GameStateManager* manager, sf::RenderWindow& window);
 
@@ -14,12 +13,20 @@ public:
     virtual void update(const float& deltaTime);
     virtual void render();
 
-
 private:
     void doCollisions();
-    bool checkCollision(Ball &circle, Paddle &rect);
+    void checkCollision(Ball &b, Paddle &p);
+    void calculateProjection(float x, float y, float oH, float oV, Ball & b, Paddle & p);
+
+    void checkWinner();
 
     Paddle player1;
     Paddle player2;
     Ball ball;
+
+    sf::Font font;
+    sf::Text scorePlayer1;
+    sf::Text scorePlayer2;
+    sf::Text hitsHeader;
+    sf::Text hitsNumber;
 };
