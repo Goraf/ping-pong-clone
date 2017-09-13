@@ -10,6 +10,20 @@ PlayState::PlayState(GameStateManager* manager, sf::RenderWindow& window) :
     player1(50.f),
     player2(windowWidth - 50.f)
 {
+    if (!font.loadFromFile("media/Sansation.ttf"))
+        window.close();
+
+    scorePlayer1.setString(std::to_string(player1.getPoints()));
+    scorePlayer1.setFont(font);
+    sf::FloatRect bounds = scorePlayer1.getLocalBounds();
+    scorePlayer1.setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f));
+    scorePlayer1.setPosition(30.f, 30.f);
+
+    scorePlayer2.setString(std::to_string(player2.getPoints()));
+    scorePlayer2.setFont(font);
+    bounds = scorePlayer2.getLocalBounds();
+    scorePlayer2.setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f));
+    scorePlayer2.setPosition(windowWidth - 30.f, 30.f);
 }
 
 void PlayState::handleEvents(const sf::Event& event)
@@ -60,6 +74,13 @@ void PlayState::update(const float& deltaTime)
     if (outOfLeftBound)
     {
         player2.addPoint();
+
+        scorePlayer2.setString(std::to_string(player2.getPoints()));
+
+        sf::FloatRect bounds = scorePlayer2.getLocalBounds();
+        scorePlayer2.setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f));
+        scorePlayer2.setPosition(windowWidth - 30.f, 30.f);
+
         ball.reset();
     }
 
@@ -67,6 +88,12 @@ void PlayState::update(const float& deltaTime)
     if (outOfRightBound)
     {
         player1.addPoint();
+
+        scorePlayer1.setString(std::to_string(player1.getPoints()));
+        sf::FloatRect bounds = scorePlayer1.getLocalBounds();
+        scorePlayer1.setOrigin(std::floor(bounds.left + bounds.width / 2.f), std::floor(bounds.top + bounds.height / 2.f));
+        scorePlayer1.setPosition(30.f, 30.f);
+
         ball.reset();
     }
 
@@ -75,6 +102,9 @@ void PlayState::update(const float& deltaTime)
 
 void PlayState::render()
 {
+    window.draw(scorePlayer1);
+    window.draw(scorePlayer2);
+
     ball.draw(window);
     player1.draw(window);
     player2.draw(window);

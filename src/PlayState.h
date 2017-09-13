@@ -23,4 +23,8 @@ private:
     Paddle player1;
     Paddle player2;
     Ball ball;
+
+    sf::Font font;
+    sf::Text scorePlayer1;
+    sf::Text scorePlayer2;
 };
