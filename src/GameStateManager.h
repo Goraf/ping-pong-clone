@@ -12,6 +12,7 @@ public:
     void push(State* state);
     void pop();
     void replace(State* state);
+    void resetToFirst();
     State* getCurrentState();
 
 private:

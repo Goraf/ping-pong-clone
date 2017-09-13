@@ -18,6 +18,11 @@ void State::replaceState(State * state)
     stateManager->replace(state);
 }
 
+void State::resetToFirstState()
+{
+    stateManager->resetToFirst();
+}
+
 void State::popState()
 {
     stateManager->pop();

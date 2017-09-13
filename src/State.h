@@ -24,6 +24,7 @@ public:
 
     void changeState(State* state);
     void replaceState(State* state);
+    void resetToFirstState();
     void popState();
 
 protected:

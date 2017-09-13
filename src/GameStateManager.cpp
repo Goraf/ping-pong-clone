@@ -26,6 +26,14 @@ void GameStateManager::replace(State * state)
     push(state);
 }
 
+void GameStateManager::resetToFirst()
+{
+    if (states.size() > 1)
+    {
+        states.erase(states.begin() + 1, states.end());
+    }
+}
+
 State* GameStateManager::getCurrentState()
 {
     return states.back().get();
