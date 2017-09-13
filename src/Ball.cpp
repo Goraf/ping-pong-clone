@@ -75,9 +75,9 @@ void Ball::resolveCollision(float px, float py, float dx, float dy, Paddle & p)
     ++hitsByPaddle;
 
     if (dx != 0.f)
-        velocity.x *= -1;
+        velocity.x *= -1.f;
     if (dy != 0.f)
-        velocity.y *= -1;
+        velocity.y *= -1.f;
     if (dx == 0.f && dy == 0.f)
     {
         velocity.x *= -1.f;
