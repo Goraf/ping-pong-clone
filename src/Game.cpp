@@ -12,7 +12,6 @@ Game::Game() :
 
 void Game::run()
 {
-    isRunning = true;
     sf::Clock clock;
     const float deltaTime{ 0.01f };
 
@@ -22,7 +21,8 @@ void Game::run()
 
     float accumulator{ 0.0f };
 
-    while (isRunning) {
+    while (window.isOpen())
+    {
         newTime = clock.getElapsedTime();
         frameTime = newTime - currentTime;
 
@@ -34,10 +34,12 @@ void Game::run()
 
         handleInput();
 
-        while (accumulator >= deltaTime) {
+        while (accumulator >= deltaTime)
+        {
             update(deltaTime);
             accumulator -= deltaTime;
         }
+
         render();
 
         sf::sleep(sf::milliseconds(1));
@@ -51,10 +53,8 @@ void Game::handleInput()
     {
         stateManager.getCurrentState()->handleEvents(event);
 
-        if (event.type == sf::Event::Closed) {
+        if (event.type == sf::Event::Closed)
             window.close();
-            isRunning = false;
-        }
     }
 }
 

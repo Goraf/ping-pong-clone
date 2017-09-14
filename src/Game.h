@@ -16,5 +16,4 @@ private:
 
     sf::RenderWindow window;
     GameStateManager stateManager;
-    bool isRunning{ false };
 };
